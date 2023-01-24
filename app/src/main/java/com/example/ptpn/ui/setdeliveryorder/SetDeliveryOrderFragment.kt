@@ -8,14 +8,12 @@ import android.bluetooth.BluetoothAdapter
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
-import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -31,6 +29,7 @@ import com.example.ptpn.utils.*
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -222,7 +221,35 @@ class SetDeliveryOrderFragment : Fragment(), DialogUtils {
 //    private fun printData(bitmap: Bitmap) {
     private fun printData() {
         binding.btnCetak.type(Type.LOADING.value)
-        try {
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                if(printAsync()){
+                    binding.btnCetak.type(Type.ENABLED.value)
+                }else{
+                    requireContext().regularDialog(
+                        image = R.drawable.ic_bluetooth,
+                        title = getString(R.string.title_dialog_error_connect_print),
+                        desc = getString(R.string.desc_dialog_error_connect_print),
+                        buttonYes = Pair(getString(R.string.lbl_btn_yes)){}
+                    )
+                    binding.btnCetak.type(Type.ENABLED.value)
+                }
+            }catch (e: Exception){
+                if(context != null){
+                    requireContext().regularDialog(
+                        image = R.drawable.ic_bluetooth,
+                        title = getString(R.string.title_dialog_error_connect_print),
+                        desc = getString(R.string.desc_dialog_error_connect_print),
+                        buttonYes = Pair(getString(R.string.lbl_btn_yes)){}
+                    )
+                    binding.btnCetak.type(Type.ENABLED.value)
+                }
+            }
+        }
+    }
+
+    private suspend fun printAsync(): Boolean {
+        val result = withContext(Dispatchers.Default){
             val connection: BluetoothConnection? = BluetoothPrintersConnections.selectFirstPaired()
             if(connection != null){
                 val printer = EscPosPrinter(connection, 203, 48f, 32)
@@ -241,24 +268,11 @@ class SetDeliveryOrderFragment : Fragment(), DialogUtils {
                         "[C]================================\n" +
                         "[C]<qrcode size='40'>https://ptpn.page.link/?link=https://ptpn.page.link/DeliveryOrder?PARAMETER=${args.spta?.id}/$idDo&apn=com.example.ptpn&efr=1</qrcode>"
                 printer.printFormattedText(text)
-                binding.btnCetak.type(Type.ENABLED.value)
+                true
             } else {
-                requireContext().regularDialog(
-                    image = R.drawable.ic_bluetooth,
-                    title = getString(R.string.title_dialog_error_connect_print),
-                    desc = getString(R.string.desc_dialog_error_connect_print),
-                    buttonYes = Pair(getString(R.string.lbl_btn_yes)){}
-                )
-                binding.btnCetak.type(Type.ENABLED.value)
+                false
             }
-        } catch (e: Exception) {
-            requireContext().regularDialog(
-                image = R.drawable.ic_bluetooth,
-                title = getString(R.string.title_dialog_error_connect_print),
-                desc = getString(R.string.desc_dialog_error_connect_print),
-                buttonYes = Pair(getString(R.string.lbl_btn_yes)){}
-            )
-            binding.btnCetak.type(Type.ENABLED.value)
         }
+        return result
     }
 }
