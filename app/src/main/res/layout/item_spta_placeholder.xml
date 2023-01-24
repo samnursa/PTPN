@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="8dp"
+    android:layout_marginHorizontal="16dp"
+    android:paddingBottom="16dp"
+    android:background="@drawable/bg_item_spta"
+    android:elevation="5dp">
+
+    <View
+        android:id="@+id/header"
+        android:background="@drawable/bg_header_item_spta"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="-16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/tvExpired"/>
+
+    <View
+        android:id="@+id/tvNoPetak"
+        android:layout_width="135dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/white"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvLblTanggal"
+        style="@style/open_sans_bold.12sp.white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/lbl_date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvNoPetak" />
+
+    <View
+        android:id="@+id/tvDate"
+        android:layout_width="70dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvLblTanggal"
+        app:layout_constraintStart_toEndOf="@id/tvLblTanggal"
+        app:layout_constraintTop_toTopOf="@id/tvLblTanggal"
+        android:background="@color/white"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvLblExpired"
+        style="@style/open_sans_bold.12sp.white"
+        android:layout_marginStart="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_expired"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvLblTanggal" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvExpired"
+        android:layout_width="70dp"
+        android:layout_height="10dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="5dp"
+        android:paddingBottom="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintStart_toEndOf="@id/tvLblExpired"
+        app:layout_constraintTop_toTopOf="@id/tvLblExpired"
+        android:background="@color/white" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvLblAfdeling"
+        style="@style/open_sans_bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/lbl_afdeling"
+        app:layout_constraintEnd_toStartOf="@+id/tvLblKategori"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvLblKategori"
+        style="@style/open_sans_bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/lbl_kategori"
+        app:layout_constraintEnd_toStartOf="@+id/tvLblPta"
+        app:layout_constraintStart_toEndOf="@+id/tvLblAfdeling"
+        app:layout_constraintTop_toBottomOf="@id/header" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvLblPta"
+        style="@style/open_sans_bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/lbl_pta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvLblKategori"
+        app:layout_constraintTop_toBottomOf="@id/header" />
+
+    <View
+        android:id="@+id/tvAfdeling"
+        android:layout_width="50dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="@+id/tvLblAfdeling"
+        app:layout_constraintStart_toStartOf="@id/tvLblAfdeling"
+        app:layout_constraintTop_toBottomOf="@id/tvLblPta"
+        android:background="@color/green_700"/>
+
+    <View
+        android:id="@+id/tvKategori"
+        android:layout_width="50dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="@+id/tvLblKategori"
+        app:layout_constraintStart_toStartOf="@+id/tvLblKategori"
+        app:layout_constraintTop_toBottomOf="@id/tvLblPta"
+        android:background="@color/green_700"/>
+
+    <View
+        android:id="@+id/tvPta"
+        android:layout_width="50dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="@id/tvLblPta"
+        app:layout_constraintStart_toStartOf="@+id/tvLblPta"
+        app:layout_constraintTop_toBottomOf="@id/tvLblPta"
+        android:background="@color/green_700"/>
+
+    <View
+        android:id="@+id/line2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/green_700"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvAfdeling" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvLblDeskripsi"
+        style="@style/open_sans_bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:text="@string/lbl_deskripsi"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line2" />
+
+    <View
+        android:id="@+id/tvDeskripsi"
+        android:layout_width="300dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginHorizontal="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvLblDeskripsi"
+        android:background="@color/green_700" />
+</androidx.constraintlayout.widget.ConstraintLayout>

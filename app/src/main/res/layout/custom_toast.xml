@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <View
+        android:id="@+id/cardToast"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="16dp"
+        android:background="@drawable/toast_success"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/txtMessage"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtMessage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/cardToast"
+        app:layout_constraintTop_toTopOf="@id/cardToast"
+        app:layout_constraintBottom_toBottomOf="@id/cardToast"
+        app:layout_constraintEnd_toStartOf="@id/imgIcon"
+        android:layout_margin="16dp"
+        tools:text="toast text"
+        style="@style/open_sans.14sp.white"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgIcon"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginEnd="16dp"
+        tools:src="@drawable/ic_email"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@id/txtMessage"
+        app:layout_constraintEnd_toEndOf="@id/cardToast"
+        app:layout_constraintTop_toTopOf="@id/cardToast"
+        app:layout_constraintBottom_toBottomOf="@id/cardToast"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

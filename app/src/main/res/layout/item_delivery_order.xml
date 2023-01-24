@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="16dp"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp"
+    android:elevation="5dp"
+    android:background="@drawable/bg_item_spta">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvSopir"
+        style="@style/open_sans_bold.20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        tools:text="Ahmad Ramadhan"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDate"
+        style="@style/open_sans.12sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        tools:text="27-07-14 20:40:32"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSopir"/>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvLblNoLori"
+        style="@style/open_sans_bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/txt_lbl_no_lori"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDate" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvNoLori"
+        style="@style/open_sans"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        tools:text="2790"
+        app:layout_constraintStart_toEndOf="@id/tvLblNoLori"
+        app:layout_constraintTop_toTopOf="@id/tvLblNoLori"
+        app:layout_constraintBottom_toBottomOf="@id/tvLblNoLori"/>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvLblNoTruk"
+        style="@style/open_sans_bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/txt_lbl_no_truk"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvLblNoLori" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvNoTruk"
+        style="@style/open_sans"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        tools:text="D 4567 SAM"
+        app:layout_constraintStart_toEndOf="@id/tvLblNoTruk"
+        app:layout_constraintTop_toTopOf="@id/tvLblNoTruk"
+        app:layout_constraintBottom_toBottomOf="@id/tvLblNoTruk"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="16dp"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginTop="8dp"
+    android:elevation="5dp"
+    android:background="@drawable/bg_item_spta">
+
+    <View
+        android:id="@+id/tvSopir"
+        android:layout_width="220dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/gray"/>
+    <View
+        android:id="@+id/tvDate"
+        android:layout_width="100dp"
+        android:layout_height="12dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="16dp"
+        android:background="@color/gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSopir"/>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvLblNoLori"
+        style="@style/open_sans_bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/txt_lbl_no_lori"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDate" />
+    <View
+        android:id="@+id/tvNoLori"
+        android:layout_width="35dp"
+        android:layout_height="14dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="4dp"
+        android:background="@color/gray"
+        app:layout_constraintStart_toEndOf="@id/tvLblNoLori"
+        app:layout_constraintTop_toTopOf="@id/tvLblNoLori"
+        app:layout_constraintBottom_toBottomOf="@id/tvLblNoLori"/>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvLblNoTruk"
+        style="@style/open_sans_bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/txt_lbl_no_truk"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvLblNoLori" />
+    <View
+        android:id="@+id/tvNoTruk"
+        android:layout_width="80dp"
+        android:layout_height="14dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="4dp"
+        android:background="@color/gray"
+        app:layout_constraintStart_toEndOf="@id/tvLblNoTruk"
+        app:layout_constraintTop_toTopOf="@id/tvLblNoTruk"
+        app:layout_constraintBottom_toBottomOf="@id/tvLblNoTruk"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
