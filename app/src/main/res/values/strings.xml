@@ -56,4 +56,5 @@
     <string name="access_bluetooth_denied">Akses ke bluetooth tidak diizinkan</string>
     <string name="title_dialog_error_connect_print">Gagal Menghubungkan printer</string>
     <string name="desc_dialog_error_connect_print">Pastikan bluetooth smartphone anda telah terhubung dengan printer</string>
+    <string name="search_delivery_order">Cari Sopir</string>
 </resources>

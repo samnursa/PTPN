@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"
                 android:layout_marginTop="4dp"
-                app:defaultQueryHint="Cari nama sopir"
+                app:defaultQueryHint="@string/search_delivery_order"
                 app:layout_constraintTop_toBottomOf="@id/tvDeliveryOrder"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
