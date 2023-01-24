@@ -93,6 +93,7 @@ class DeliveryOrderFragment : Fragment() {
     private fun readDataSPTA(id: String, search: String = ""){
         shimmer.visible()
         shimmer.startShimmer()
+        binding.emptyPage.root.gone()
         db.collection(COLLECTIONS.SPTA.name).document(id).collection(COLLECTIONS.DELIVERY_ORDER.name)
             //for better search and index use elastic search or algolia
             .orderBy(SEARCH.sopir.name)
