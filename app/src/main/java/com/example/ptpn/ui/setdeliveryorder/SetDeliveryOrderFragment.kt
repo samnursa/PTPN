@@ -117,7 +117,7 @@ class SetDeliveryOrderFragment : Fragment(), DialogUtils {
                 tgl_tebang = calendar.editText?.text.toString(),
                 no_lori = noLori.editText?.text.toString(),
                 no_truk = noTruk.editText?.text.toString(),
-                sopir = name.editText?.text.toString(),
+                sopir = name.editText?.text.toString().lowercase(),
                 brix = brix.editText?.text.toString().toInt(),
                 ph = ph.editText?.text.toString().toInt(),
                 terbakar = !rdButtonNo.isChecked

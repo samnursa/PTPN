@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -13,9 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ptpn.R
 import com.example.ptpn.databinding.FragmentDeliveryOrderBinding
 import com.example.ptpn.model.DeliveryOrder
-import com.example.ptpn.utils.COLLECTIONS
-import com.example.ptpn.utils.gone
-import com.example.ptpn.utils.visible
+import com.example.ptpn.utils.*
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
@@ -46,6 +45,8 @@ class DeliveryOrderFragment : Fragment() {
     private fun FragmentDeliveryOrderBinding.bind(){
         shimmer = shimmerViewContainer
         db = Firebase.firestore
+        svDeliveryOrder.onActionViewExpanded()
+        svDeliveryOrder.clearFocus()
 
         args.spta?.apply {
             id?.let { readDataSPTA(it) }
@@ -58,6 +59,23 @@ class DeliveryOrderFragment : Fragment() {
         icBack.setOnClickListener {
             navController.navigateUp()
         }
+
+        svDeliveryOrder.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextChange(newText: String): Boolean {
+                if(newText.isEmpty()){
+                    args.spta?.id?.let {
+                        readDataSPTA(it)
+                    }
+                }
+                return false
+            }
+            override fun onQueryTextSubmit(query: String): Boolean {
+                args.spta?.id?.let{
+                    readDataSPTA(it, query)
+                }
+                return false
+            }
+        })
 
         btnAdd.setOnClickListener {
             val bundle = bundleOf("deliveryOrder" to null, "spta" to args.spta, "dynamicLink" to false)
@@ -72,14 +90,28 @@ class DeliveryOrderFragment : Fragment() {
         rvDeliveryOrder.adapter = deliveryOrderAdapter
     }
 
-    private fun readDataSPTA(id: String){
+    private fun readDataSPTA(id: String, search: String = ""){
         shimmer.visible()
         shimmer.startShimmer()
         db.collection(COLLECTIONS.SPTA.name).document(id).collection(COLLECTIONS.DELIVERY_ORDER.name)
+            //for better search and index use elastic search or algolia
+            .orderBy(SEARCH.sopir.name)
+            .startAt(search)
+            .endAt(search +'\uf8ff')
             .get()
             .addOnSuccessListener { result ->
                 val listDeliveryOrder = mutableListOf<DeliveryOrder>()
-                if(result.size() == 0) binding.emptyPage.root.visible() else binding.emptyPage.root.gone()
+                if(result.size() == 0) {
+                   binding.apply{
+                       emptyPage.root.visible()
+                       rvDeliveryOrder.gone()
+                   }
+                } else {
+                    binding.apply {
+                        emptyPage.root.gone()
+                        rvDeliveryOrder.visible()
+                    }
+                }
                 result.forEach { deliveryOrder ->
                     listDeliveryOrder.add(deliveryOrder.toObject(DeliveryOrder::class.java).withId(deliveryOrder.id))
                 }

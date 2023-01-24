@@ -8,3 +8,7 @@ enum class COLLECTIONS {
 enum class DYNAMIC_LINKS {
     DeliveryOrder
 }
+
+enum class SEARCH {
+    sopir
+}
