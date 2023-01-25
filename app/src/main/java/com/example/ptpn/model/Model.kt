@@ -3,6 +3,7 @@ package com.example.ptpn.model
 import com.google.firebase.firestore.Exclude
 import com.google.firebase.firestore.IgnoreExtraProperties
 
+@Suppress("UNCHECKED_CAST")
 @IgnoreExtraProperties
 open class Model {
     @Exclude

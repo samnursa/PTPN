@@ -178,7 +178,7 @@ class SetDeliveryOrderFragment : Fragment(), DialogUtils {
             .addOnSuccessListener {
                 requireContext().toast(getString(R.string.success_update_do))
             }
-            .addOnFailureListener { exception ->
+            .addOnFailureListener {
                 requireContext().toast(getString(R.string.failed_update_do), ToastState.ERROR)
             }
     }
@@ -199,26 +199,12 @@ class SetDeliveryOrderFragment : Fragment(), DialogUtils {
 
     private val requestBluetooth = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == RESULT_OK) {
-            //encodeQr(binding.etQr.text.toString())
             printData()
         }else{
             requireContext().toast(getString(R.string.access_bluetooth_denied), ToastState.ERROR)
         }
     }
 
-//    private fun encodeQr(stringQr: String){
-//        try {
-//            val bm: Bitmap? = encodeAsBitmap(stringQr)
-//            bm?.let {
-//                //binding.imgQr.setImageBitmap(bm)
-//                printData(bm)
-//            }
-//        } catch (e: Exception) {
-//            Toast.makeText(this, "${e.message}", Toast.LENGTH_LONG).show()
-//        }
-//    }
-
-//    private fun printData(bitmap: Bitmap) {
     private fun printData() {
         binding.btnCetak.type(Type.LOADING.value)
         CoroutineScope(Dispatchers.Main).launch {

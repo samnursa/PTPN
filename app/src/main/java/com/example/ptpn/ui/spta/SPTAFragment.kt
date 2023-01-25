@@ -78,7 +78,7 @@ class SPTAFragment : Fragment(), DialogUtils {
         //writeData()
     }
 
-    fun readDataSPTA(){
+    private fun readDataSPTA(){
         shimmer.startShimmer()
         db.collection(COLLECTIONS.SPTA.name)
             .get()
@@ -98,53 +98,53 @@ class SPTAFragment : Fragment(), DialogUtils {
             }
     }
 
-    fun readData(){
-        db.collection(COLLECTIONS.SPTA.name).document("LA").collection(COLLECTIONS.DELIVERY_ORDER.name)
-            .get()
-            .addOnSuccessListener { result ->
-                for (document in result) {
-                    Log.d("ReadDO", "${document.id} => ${document.data}")
-                }
-                sptaAdapter.setSptaMethod(result.toObjects(SPTA::class.java))
-            }
-            .addOnFailureListener { exception ->
-                Log.w("ReadDO", "Error getting documents.", exception)
-            }
-    }
-
-    fun searchData(){
-        db.collection(COLLECTIONS.SPTA.name)
-            .whereEqualTo("name", "los angeles")
-            .get()
-            .addOnSuccessListener { result ->
-                for (document in result) {
-                    Log.d("ReadDO", "${document.id} => ${document.data}")
-                }
-            }
-            .addOnFailureListener { exception ->
-                Log.w("ReadDO", "Error getting documents.", exception)
-            }
-    }
-
-    fun writeData(){
-        val spta = SPTA(
-            tanggal = "07 OCT 2022",
-            no_petak = "7TK1221310890",
-            afdeling = "AFD14",
-            kategori = "TZ-KS",
-            deskripsi = "MATAHARI WAL TZ AFD14 AZAM PC 10B 1310890",
-            pta = "PTA TZ",
-            expired = "2022-10-08 05:59:59"
-        )
-
-        // Add a new document with a generated ID
-        db.collection(COLLECTIONS.SPTA.name)
-            .add(spta)
-            .addOnSuccessListener { documentReference ->
-                //Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
-            }
-            .addOnFailureListener { e ->
-                //Log.w(TAG, "Error adding document", e)
-            }
-    }
+//    fun readData(){
+//        db.collection(COLLECTIONS.SPTA.name).document("LA").collection(COLLECTIONS.DELIVERY_ORDER.name)
+//            .get()
+//            .addOnSuccessListener { result ->
+//                for (document in result) {
+//                    Log.d("ReadDO", "${document.id} => ${document.data}")
+//                }
+//                sptaAdapter.setSptaMethod(result.toObjects(SPTA::class.java))
+//            }
+//            .addOnFailureListener { exception ->
+//                Log.w("ReadDO", "Error getting documents.", exception)
+//            }
+//    }
+//
+//    fun searchData(){
+//        db.collection(COLLECTIONS.SPTA.name)
+//            .whereEqualTo("name", "los angeles")
+//            .get()
+//            .addOnSuccessListener { result ->
+//                for (document in result) {
+//                    Log.d("ReadDO", "${document.id} => ${document.data}")
+//                }
+//            }
+//            .addOnFailureListener { exception ->
+//                Log.w("ReadDO", "Error getting documents.", exception)
+//            }
+//    }
+//
+//    fun writeData(){
+//        val spta = SPTA(
+//            tanggal = "07 OCT 2022",
+//            no_petak = "7TK1221310890",
+//            afdeling = "AFD14",
+//            kategori = "TZ-KS",
+//            deskripsi = "MATAHARI WAL TZ AFD14 AZAM PC 10B 1310890",
+//            pta = "PTA TZ",
+//            expired = "2022-10-08 05:59:59"
+//        )
+//
+//        // Add a new document with a generated ID
+//        db.collection(COLLECTIONS.SPTA.name)
+//            .add(spta)
+//            .addOnSuccessListener { documentReference ->
+//                //Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+//            }
+//            .addOnFailureListener { e ->
+//                //Log.w(TAG, "Error adding document", e)
+//            }
+//    }
 }
